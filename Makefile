@@ -19,12 +19,10 @@ run: out/Bluck.jar out/BoyerMoore.jar
 	@cd out && java -cp 'parcs.jar:Bluck.jar' Bluck
 
 Bluck.class: src/Bluck.java
-    @javac -cp out/parcs.jar src/Bluck.java
+	@javac -cp out/parcs.jar src/Bluck.java
 
 Input.class: src/Input.java
-    @javac -cp out/parcs.jar src/Input.java
+	@javac -cp out/parcs.jar src/Input.java
 
 Result.class: src/Result.java
-    @javac -cp out/parcs.jar src/Result.java
-
-
+	@javac -cp out/parcs.jar src/Result.java
