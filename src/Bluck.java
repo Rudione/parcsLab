@@ -8,11 +8,14 @@ public class Bluck{
 
     public static void main(String[] args) throws Exception {
         task curtask = new task();
+        // Додає JAR-файл з реалізацією алгоритму до завдання.
         curtask.addJarFile("BoyerMoore.jar");
 
+        // Зчитує текст та шаблон з файлів.
         String text = textFromFile( curtask.findFile("input") );
         String pattern = patternFromFile( curtask.findFile("pattern"));
 
+        // Створює об'єкт AMInfo для взаємодії з системою PARCS.
         AMInfo info = new AMInfo(curtask, null);
 
         int N = 10;
@@ -44,6 +47,7 @@ public class Bluck{
             String t = texts.get(i);
             Integer shift = shifts.get(i);
 
+            // Створює точку обробки та канал для передачі даних.
             point p = info.createPoint();
             channel c = p.createChannel();
 
@@ -52,11 +56,13 @@ public class Bluck{
 
             Input input = new Input(t, pattern);
 
+            // Виконує алгоритм Боєра–Мура на створеній точці та передає вхідні дані через канал.
             p.execute("BoyerMoore");
             c.write(input);
 
             System.out.println("Waiting for result .. ");
 
+            // Виконує алгоритм Боєра–Мура на створеній точці та передає вхідні дані через канал.
             Result result = (Result) (c.readObject());
             List<Integer> ins = result.getRes();
             if (ins.size() > 0) {
